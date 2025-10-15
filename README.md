@@ -1,0 +1,1 @@
+# LEXIArchKatasQ42025
