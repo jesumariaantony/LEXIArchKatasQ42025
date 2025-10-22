@@ -241,6 +241,57 @@ This framework ensures AI systems remain accurate, trustworthy, and aligned with
 
 ## Roadmap
 Approach: Phased Rollout Strategy
-- **MVP:** Run AI and human grading in parallel to compare accuracy, refine AI models, and track grading consistency.
-- **Growth:** AI handles primary grading, with human validation for low-confidence cases and structured feedback improvements.
-- **Matured:** Achieve high-accuracy AI grading, with minimal human involvement focused on oversight.
+This roadmap outlines the phased implementation plan to deploy MobilityCorp's AI-driven system, from initial MVP to full-scale production across multiple locations.
+
+### 1. MVP Scope
+
+Objective: Build a functional core system with AI support for key operations.
+### Components:
+* Telemetry ingestion pipeline & storage setup (hot and cold data).
+* Booking and payment integration with per-minute billing.
+* Basic vehicle return verification using edge AI for immediate feedback.
+* Demand forecasting pilot for one city zone.
+* Staff routing heuristics for battery swaps and vehicle redistribution.
+* Basic recommendation engine for simple personalized notifications.
+### KPIs:
+* Availability of vehicles in pilot zone.
+* Staff operational efficiency in battery swaps.
+* Accuracy of return verification.
+* Initial customer engagement and feedback.
+
+### 2. Phase 2
+Objective: Expand AI capabilities and improve operational efficiency.
+### Components:
+* Full feature store integration (online and offline features).
+* RUL and battery prediction models for all vehicle types.
+* Advanced optimization engine for routing and redistribution.
+* Cloud-based vision models for damage detection and EV plug-in verification.
+* Fraud detection pipeline and alerting systems.
+* Enhanced personalized recommender with uplift modeling for incentives.
+### KPIs:
+* Reduced downtime and stranded vehicles.
+* Improved staff route efficiency and reduced operational cost.
+* Increase in repeat customer usage and subscriptions.
+* Reduction in false fines and disputes.
+
+### 3. Phase 3
+Objective: Scale to multiple cities and enhance system robustness.
+### Components:
+* Multi-city deployment of AI models and infrastructure.
+* Real-time re-optimization for dynamic fleet management.
+* Continuous monitoring, drift detection, and automated retraining.
+* Integration with external data sources (traffic, events, weather).
+* Enhanced analytics dashboards for staff and management.
+### KPIs:
+* Fleet utilization rates across locations.
+* Operational cost savings and staff efficiency improvements.
+* Customer retention and growth metrics.
+* Accuracy and reliability of AI predictions across locations.
+
+### Risk Management
+* Fallbacks: Rule-based systems if AI models fail.
+* Human-in-the-loop: Critical tasks reviewed manually when needed.
+* Monitoring: Continuous system health and model performance checks.
+* Feedback loops: Customer and staff feedback incorporated into model retraining.
+
+This phased roadmap ensures a controlled, scalable, and efficient rollout of MobilityCorp’s AI-driven solution, starting with a focused MVP and progressively expanding to full production capabilities.
