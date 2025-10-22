@@ -5,6 +5,14 @@ A structured approach to the Mobility Corp Problem **O'Reilly Architectural Kata
 
 ## Table of Contents
 
+- Overview & Problem Statement
+- AI-Enhanced Solution Overview
+- System Architecture Diagram & Components
+- AI Use Cases & Models
+- Architecture Decision Records (ADRs)
+- Validation, Governance & Monitoring
+
+Implementation Roadmap & MVP
 ## Team
  ![Team](/assets/team.png "team")
 - [**Jesu Maria Antony sebastian**](https://www.linkedin.com/in/jesumariaantony/) , Senior Solution Architect
