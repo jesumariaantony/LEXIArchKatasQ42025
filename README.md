@@ -17,16 +17,38 @@ A structured approach to the Mobility Corp Problem **O'Reilly Architectural Kata
 
 # Problem definition
 
-## Context
+## Problem Statement
 
-Enter the content here
+MobilityCorp needs an AI-driven architecture that dynamically aligns fleet availability, charging logistics, and user demand forecasts to improve service reliability, customer satisfaction, and operational efficiency while ensuring scalability across cities.
 
 ## Challenges with MobilityCorp
+
+**Customer Experience**:
+1. Customers often find the vehicles they need aren’t available where or when they want them.
+2. Inconsistent availability discourages regular use.
+
+**Operations**:
+1. It’s hard to predict when and where vehicles will be needed.
+2. Prioritizing battery swaps and rebalancing the fleet is challenging.
+   
+**Usage & Retention**:
+1. Most customers use the service sporadically rather than for regular commutes.
+   
+**Energy Management**:
+1. Vehicles sometimes run low on charge before staff can reach them.
 
 1. Vehicles aren’t where customers want them (availability / placement)
 2. Dead / low-battery vehicles
 3. Low repeat usage / weak conversion -
-   
+
+## Current Operations
+
+1. **Cars and Vans**: *Can be booked up to 7 days in advance for a set duration.*
+2. **Bikes and Scooters**: Can be booked 30 minutes ahead and used for up to 12 hours.
+3. **Payments**: Charged per minute, with fines for late returns or parking in the wrong spot.
+4. **Return Process**: Vehicles must be returned to designated spots. Customers provide photo proof and optional feedback.
+5. **Maintenance**: Staff replace batteries for scooters and bikes and redistribute vehicles to ensure availability.
+
 ## Key Objective
 Enter the content here
 ## Business Constraints
