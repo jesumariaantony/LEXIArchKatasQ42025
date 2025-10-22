@@ -95,10 +95,149 @@ The AI-enabled solution integrates with MobilityCorp’s existing systems and in
 * Improved customer satisfaction and higher regular usage.
 * Secure, reliable, and scalable system ready for expansion to multiple locations.
   
-## How is AI Enabled in our Architecture
-Enter the content here
-## Architecture characteristics
-Enter the content here
+# System Architecture Diagram & Components
+This section provides a detailed view of the MobilityCorp system, showing how AI integrates with existing operations to improve vehicle availability, optimize maintenance, and enhance customer experience.
+
+### a) Edge Layer:
+* Vehicle telemetry (GPS, battery level, speed, usage).
+* NFC unlock/lock logs.
+* Customer-submitted photos for vehicle return verification.
+* Lightweight edge AI for immediate anomaly detection.
+### b) Data Ingestion & Streaming:
+* Event streaming platform (Kafka or equivalent) to capture real-time telemetry and events.
+* Preprocessing services to validate data and attach metadata.
+### c) Storage Layer:
+* Hot storage: Time-series DB (ClickHouse/TimescaleDB) for operational queries.
+* Cold storage: Object storage (S3/GCS) for historical telemetry and images.
+* Feature store (Feast) for ML models (both online and offline features).
+* Relational DB (PostgreSQL) for user, vehicle, and booking metadata.
+* Optional Graph DB for relationships (vehicle-user-staff).
+### d) Machine Learning & AI Services:
+* Demand forecasting models.
+* RUL/Battery life prediction models.
+* Optimization engine for staff routing and vehicle redistribution.
+* Vision models for return verification and damage detection.
+* Recommendation models for personalized user engagement.
+* Fraud detection models for GPS, photo, and unlock anomalies.
+### e) API & Applications Layer:
+* REST/GraphQL APIs for customer apps, staff apps, and admin dashboards.
+* Customer-facing mobile apps (booking, unlock/lock, feedback).
+* Staff mobile apps for battery swaps and vehicle redistribution tasks.
+* Fleet management dashboards and analytics tools.
+### f) Operations & Monitoring:
+* Logging and tracing (Prometheus, Grafana, OpenTelemetry, Jaeger).
+* Alerting and incident management.
+* Model monitoring: drift detection, performance metrics, and retraining triggers.
+* RBAC and tenant-based isolation.
+
+## AI Use Cases & Models
+This section outlines the key AI-driven components and how they directly address MobilityCorp’s operational and customer challenges.
+
+### Use Case 1: Predictive Demand Forecasting
+* Objective: Predict vehicle demand by type and location to ensure availability.
+* Inputs: Historical bookings, time-of-day, day-of-week, weather, events, nearby transit disruptions.
+* Models: Time-series models (ARIMA, Prophet), Gradient Boosted Trees (LightGBM/CatBoost), Transformer-based models for longer horizons.
+* Outputs: Probabilistic forecasts per zone with feature importances and scenario-based predictions.
+
+### Use Case 2: Battery & Charge Prioritization
+* Objective: Predict which vehicles need charging or battery swaps and prioritize staff tasks.
+* Inputs: SOC, usage patterns, trip length estimates, charging availability, battery health, temperature.
+* Models: RUL regression or survival analysis, combined with priority scoring function.
+* Outputs: Prioritized task list for staff with urgency scores.
+
+### Use Case 3: Staff Routing & Vehicle Redistribution
+* Objective: Optimize routes for staff performing battery swaps and vehicle redistribution.
+* Inputs: Forecasts, vehicle states, staff availability, traffic data, bay capacity.
+* Models: VRPTW (Vehicle Routing Problem with Time Windows) solver using OR-Tools, hybrid heuristics, and reinforcement learning for long-term optimization.
+* Outputs: Optimized staff routes and task assignments.
+
+### Use Case 4: Return Verification & Compliance
+* Objective: Verify that vehicles are returned correctly and EVs are charged.
+* Inputs: Customer photos, GPS data, bay locations.
+* Models: Computer vision models (YOLO/Detectron for object detection, Mask R-CNN for damage detection, classification for charger connection).
+* Outputs: Verification result with confidence score, detected issues, and human review queue.
+
+### Use Case 5: Personalized User Engagement
+* Objective: Encourage regular usage and subscription adoption.
+* Inputs: User trip history, saved locations, session context, travel patterns.
+* Models: Session-based recommendation models (SASRec/Transformer), uplift models for personalized incentives.
+* Outputs: Personalized suggestions, push notifications, targeted promotions.
+
+### Use Case 6: Fraud Detection & Security
+* Objective: Detect suspicious activities such as GPS spoofing, false photos, or account misuse.
+* Inputs: Unlock logs, GPS consistency, photo forensics, device fingerprints.
+* Models: Rule-based checks + anomaly detection (Isolation Forest, LSTM autoencoder), supervised classifiers for known fraud patterns.
+* Outputs: Risk scores, automated mitigation actions, human review when needed.
+
+## Architecture Decision Records (ADRs)
+
+### 1. ADR-001: Feature Store Adoption
+* **Decision**: Adopt Feast as the centralized feature store.
+* **Rationale**: Provides a consistent source for online and offline features, reducing training-serving skew for ML models.
+* **Trade-offs**: Adds operational overhead, but ensures reproducibility and real-time access to features for forecasting, battery prediction, and recommendation models.
+
+### 2. ADR-002: Model Serving Architecture
+* **Decision**: Use Seldon Core on Kubernetes for serving models with canary and A/B deployment support.
+* **Rationale**: Vendor-neutral, supports multiple model frameworks, and integrates with service mesh for security and observability.
+* **Trade-offs**: Higher infra management effort compared to fully managed cloud services, but provides flexibility and portability.
+
+### 3. ADR-003: Vision Model Deployment (Edge vs Cloud)
+* **Decision**: Implement a two-tier approach: lightweight edge model for immediate feedback and cloud models for high-accuracy verification.
+* **Rationale**: Immediate UX feedback while leveraging cloud GPUs for complex inference.
+* **Trade-offs**: Requires version synchronization and model monitoring across layers.
+
+### 4. ADR-004: Optimization Solver Choice
+* **Decision**: Use OR-Tools CP-SAT combined with heuristic/metaheuristic algorithms for routing and redistribution.
+* **Rationale**: CP-SAT handles strict constraints efficiently; heuristics provide scalability for real-time updates.
+* **Trade-offs**: Near-optimal solutions may occasionally be suboptimal, but real-time constraints are met.
+
+### 5. ADR-005: Data Retention & Privacy
+* **Decision**: Retain raw images for 30 days, telemetry for 12 months hot storage, then archive. Provide tenant-specific retention policies.
+* **Rationale**: Balances dispute resolution, operational analysis, and privacy requirements.
+* **Trade-offs**: Shorter retention may limit dispute resolution; longer retention increases storage costs.
+
+### 6. ADR-006: AI Validation & Human-in-the-Loop
+* **Decision**: All high-impact decisions (billing fines, return verification, fraud alerts) include human review for low-confidence cases.
+* **Rationale**: Ensures fairness, reduces false positives, and builds trust in AI decisions.
+* **Trade-offs**: Slightly slower response for edge cases but improves accuracy and customer satisfaction.
+
+### 7. ADR-007: Model Retraining & Drift Detection
+* **Decision**: Implement continuous monitoring for input distribution and model performance. Trigger retraining or rollback when drift is detected.
+* **Rationale**: Maintains accuracy over time and ensures AI models adapt to changing user behavior and seasonal trends.
+* **Trade-offs**: Additional monitoring and compute costs, but reduces risk of degraded performance impacting operations and customer experience.
+
+## Validation, Governance & Monitoring
+To ensure AI-driven operations are accurate, fair, and reliable, MobilityCorp implements validation processes, governance standards, and continuous monitoring across all models and operational systems.
+Model Validation & Performance Monitoring
+
+### 1. Forecasting Models: Evaluate using CRPS, MAE, and coverage of prediction intervals.
+* RUL/Battery Models: Use RMSE, calibration metrics, and time-to-failure precision/recall.
+* Vision Models: Measure precision/recall for return verification, FPR for false fines, and human review rates.
+* Recommender Models: Monitor uplift, retention lift, conversion rates, and long-term behavior changes.
+Processes:
+* Shadow deployments of new models to gather performance data without affecting live decisions.
+* Canary rollouts to a small user group before full deployment.
+* Human-in-the-loop for low-confidence or high-impact cases.
+
+### 2. Governance & Responsible AI
+* Fairness: Regular audits to ensure recommendations and incentives do not introduce bias.
+* Privacy: Explicit user consent for targeted notifications and calendar integrations. Data encryption at rest and in transit.
+* Transparency: Explainability using SHAP values for predictions and visual overlays for vision-based verifications.
+* Data Quality: Automated checks on incoming telemetry and images to ensure consistency and completeness.
+
+### 3. Operational Monitoring
+* Telemetry & Logging: All model inferences and API calls are logged for traceability.
+* Alerting: Prometheus/Grafana alerting on anomalies, system failures, or model performance degradation.
+* Drift Detection: Monitor input distributions and outputs to detect concept drift and trigger retraining.
+* Dashboard & Analytics: Centralized dashboards for staff and management to view fleet status, AI recommendations, and alerts.
+
+### 4. Risk Mitigation
+* Fallback Mechanisms: Rule-based defaults if AI services fail.
+* Human Oversight: Critical decisions (billing, return verification, fraud detection) reviewed by staff.
+* Continuous Improvement: Feedback loops from staff and customer interactions feed back into training data.
+* Security: Monitoring for unusual access patterns, GPS spoofing, and potential fraud attempts.
+
+This framework ensures AI systems remain accurate, trustworthy, and aligned with business objectives while providing a safe and fair experience for customers and staff.
 
 ## Roadmap
 Approach: Phased Rollout Strategy
