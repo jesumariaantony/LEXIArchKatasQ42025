@@ -160,25 +160,37 @@ This section outlines the key AI-driven components and how they directly address
 * Inputs: Forecasts, vehicle states, staff availability, traffic data, bay capacity.
 * Models: VRPTW (Vehicle Routing Problem with Time Windows) solver using OR-Tools, hybrid heuristics, and reinforcement learning for long-term optimization.
 * Outputs: Optimized staff routes and task assignments.
-
+* Diagram:
+  
+  ![Staff Routing & Vehicle Redistribution](/assets/Staff_Routing_Vehicle_Redistribution.png "Staff Routing & Vehicle Redistribution")
+  
 ### Use Case 4: Return Verification & Compliance
 * Objective: Verify that vehicles are returned correctly and EVs are charged.
 * Inputs: Customer photos, GPS data, bay locations.
 * Models: Computer vision models (YOLO/Detectron for object detection, Mask R-CNN for damage detection, classification for charger connection).
 * Outputs: Verification result with confidence score, detected issues, and human review queue.
-
+* Diagram:
+  
+  ![Return Verification & Compliance](/assets/Return_Verification_Compliance.png "Return Verification & Compliance")
+  
 ### Use Case 5: Personalized User Engagement
 * Objective: Encourage regular usage and subscription adoption.
 * Inputs: User trip history, saved locations, session context, travel patterns.
 * Models: Session-based recommendation models (SASRec/Transformer), uplift models for personalized incentives.
 * Outputs: Personalized suggestions, push notifications, targeted promotions.
-
+* Diagram:
+  
+  ![Personalized User Engagement](/assets/Personalized_User_Engagement.png "Personalized User Engagement")
+  
 ### Use Case 6: Fraud Detection & Security
 * Objective: Detect suspicious activities such as GPS spoofing, false photos, or account misuse.
 * Inputs: Unlock logs, GPS consistency, photo forensics, device fingerprints.
 * Models: Rule-based checks + anomaly detection (Isolation Forest, LSTM autoencoder), supervised classifiers for known fraud patterns.
 * Outputs: Risk scores, automated mitigation actions, human review when needed.
-
+* Diagram:
+  
+  ![Fraud Detection & Security](/assets/Fraud_Detection_Security.png "Fraud Detection & Security")
+  
 ## Architecture Decision Records (ADRs)
 
 These detailed ADRs establish a foundation for MobilityCorp’s AI architecture, ensuring scalability, resilience, and responsible deployment of AI across forecasting, optimization, and customer engagement systems.
