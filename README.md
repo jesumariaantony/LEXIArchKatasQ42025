@@ -273,6 +273,39 @@ These detailed ADRs establish a foundation for MobilityCorp’s AI architecture,
 9. [**ADR-009: Security & Access Control**](ADRs/ADR-009_Security_Access_Control.md)
 10. [**ADR-010: Recommendation Engine Framework**](ADRs/ADR-010_Recommendation_Engine_Framework.md)
 
+# Validation, Governance & Monitoring
+To ensure AI-driven operations are accurate, fair, and reliable, MobilityCorp implements validation processes, governance standards, and continuous monitoring across all models and operational systems.
+
+## 1. **Model Validation & Performance Monitoring**
+
+* **Forecasting Models**: Evaluate using CRPS, MAE, and coverage of prediction intervals.
+* **RUL/Battery Models**: Use RMSE, calibration metrics, and time-to-failure precision/recall.
+* **Vision Models**: Measure precision/recall for return verification, FPR for false fines, and human review rates.
+* **Recommender Models**: Monitor uplift, retention lift, conversion rates, and long-term behavior changes.
+**Processes**:
+* Shadow deployments of new models to gather performance data without affecting live decisions.
+* Canary rollouts to a small user group before full deployment.
+* Human-in-the-loop for low-confidence or high-impact cases.
+
+## 2. *Governance & Responsible AI*
+* **Fairness**: Regular audits to ensure recommendations and incentives do not introduce bias.
+* **Privacy**: Explicit user consent for targeted notifications and calendar integrations. Data encryption at rest and in transit.
+* **Transparency**: Explainability using SHAP values for predictions and visual overlays for vision-based verifications.
+* **Data Quality**: Automated checks on incoming telemetry and images to ensure consistency and completeness.
+
+## 3. *Operational Monitoring*
+
+* **Telemetry & Logging**: All model inferences and API calls are logged for traceability.
+* **Alerting**: Prometheus/Grafana alerting on anomalies, system failures, or model performance degradation.
+* **Drift Detection**: Monitor input distributions and outputs to detect concept drift and trigger retraining.
+* **Dashboard & Analytics**: Centralized dashboards for staff and management to view fleet status, AI recommendations, and alerts.
+
+## Risk Management
+* **Fallbacks**: Rule-based systems if AI models fail.
+* **Human-in-the-loop**: Critical tasks reviewed manually when needed.
+* **Monitoring**: Continuous system health and model performance checks.
+* **Feedback loops**: Customer and staff feedback incorporated into model retraining.
+
 # Implementation Roadmap
 **Approach**: Phased Rollout Strategy
 This roadmap outlines the phased implementation plan to deploy MobilityCorp's AI-driven system, from initial MVP to full-scale production across multiple locations.
@@ -321,11 +354,5 @@ Objective: Scale to multiple cities and enhance system robustness.
 * Operational cost savings and staff efficiency improvements.
 * Customer retention and growth metrics.
 * Accuracy and reliability of AI predictions across locations.
-
-# Risk Management
-* **Fallbacks**: Rule-based systems if AI models fail.
-* **Human-in-the-loop**: Critical tasks reviewed manually when needed.
-* **Monitoring**: Continuous system health and model performance checks.
-* **Feedback loops**: Customer and staff feedback incorporated into model retraining.
 
 This phased roadmap ensures a controlled, scalable, and efficient rollout of MobilityCorp’s AI-driven solution, starting with a focused MVP and progressively expanding to full production capabilities.
