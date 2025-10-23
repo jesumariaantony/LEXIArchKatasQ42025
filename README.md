@@ -95,8 +95,6 @@ The AI-enabled solution integrates with MobilityCorp’s existing systems and in
 * **Operations & Staff Tools**: Mobile apps for maintenance staff with optimized tasks, fleet dashboards for monitoring, and alerts.
 * **Customer Apps**: Updated mobile apps offering personalized suggestions, instant verification of returns, and notifications.
 
-
-
 ## Expected Outcomes
 * Vehicles are available where and when needed.
 * Reduced downtime due to proactive battery management.
@@ -104,30 +102,52 @@ The AI-enabled solution integrates with MobilityCorp’s existing systems and in
 * Improved customer satisfaction and higher regular usage.
 * Secure, reliable, and scalable system ready for expansion to multiple locations.
   
-# System Architecture Diagram & Components
+# System Architecture Components
 This section provides a detailed view of the MobilityCorp system, showing how AI integrates with existing operations to improve vehicle availability, optimize maintenance, and enhance customer experience.
 
 ### a) Edge Layer:
-* Vehicle telemetry (GPS, battery level, speed, usage).
-* NFC unlock/lock logs.
-* Customer-submitted photos for vehicle return verification.
-* Lightweight edge AI for immediate anomaly detection.
-### b) Data Ingestion & Streaming:
-* Event streaming platform (Kafka or equivalent) to capture real-time telemetry and events.
-* Preprocessing services to validate data and attach metadata.
+**Components**: IoT-enabled vehicles with GPS, accelerometers, and CAN bus data integration.
+
+**Functions**:
+* Capture live telemetry (speed, charge level, usage duration).
+* Edge AI modules for anomaly detection (sudden stops, battery drain, misuse).
+* NFC-based authentication for vehicle lock/unlock.
+* Local caching for offline data resilience.
+  
+**Tools/Tech**: TensorRT models, MQTT communication, and mobile SDK integration.
+
+### b) Data Ingestion & Streaming [Bridge]:
+**Components**: Kafka or Pulsar clusters with stream processors.
+
+**Functions**:
+* Real-time ingestion of telemetry, booking, and customer activity.
+* Data validation, enrichment, and schema evolution.
+* Stream partitioning by city and vehicle type.
+
+**Tools/Tech**: Kafka Connect, Debezium, Flink/Spark Streaming.
+
 ### c) Storage Layer:
-* Hot storage: Time-series DB (ClickHouse/TimescaleDB) for operational queries.
-* Cold storage: Object storage (S3/GCS) for historical telemetry and images.
-* Feature store (Feast) for ML models (both online and offline features).
-* Relational DB (PostgreSQL) for user, vehicle, and booking metadata.
-* Optional Graph DB for relationships (vehicle-user-staff).
+* **Hot storage**: Time-series DB (ClickHouse/TimescaleDB) for operational queries.
+* **Cold storage**: Object storage (S3/GCS) for historical telemetry and images.
+* **Feature store** (Feast) for ML models (both online and offline features).
+* **Transactional DB** (PostgreSQL) for user, vehicle, and booking metadata.
+* **Optional Graph DB** for relationships (vehicle-user-staff).
+  
 ### d) Machine Learning & AI Services:
-* Demand forecasting models.
-* RUL/Battery life prediction models.
-* Optimization engine for staff routing and vehicle redistribution.
-* Vision models for return verification and damage detection.
-* Recommendation models for personalized user engagement.
-* Fraud detection models for GPS, photo, and unlock anomalies.
+**Components**: ML models, inference services, and retraining pipelines.
+
+**Core AI Services**:
+
+* **Demand Forecasting**: Predict vehicle demand per zone per hour.
+* **Battery/RUL Prediction**: Estimate remaining charge and plan proactive swaps.
+* **Optimization Engine**: Route planning for staff and vehicle redistribution.
+* **Vision AI**: Damage and return verification using photo submissions.
+* **Recommender Engine**: Personalized trip and promotion suggestions.
+
+* **Fraud Detection**: Identify anomalies in GPS trails, booking patterns, or unlock behavior.
+
+**Tools/Tech**: Kubeflow, MLflow, Seldon Core, TensorFlow, PyTorch, ONNX Runtime.
+
 ### e) API & Applications Layer:
 * REST/GraphQL APIs for customer apps, staff apps, and admin dashboards.
 * Customer-facing mobile apps (booking, unlock/lock, feedback).
@@ -136,8 +156,11 @@ This section provides a detailed view of the MobilityCorp system, showing how AI
 ### f) Operations & Monitoring:
 * Logging and tracing (Prometheus, Grafana, OpenTelemetry, Jaeger).
 * Alerting and incident management.
+* CI/CD for ML: Automated retraining and deployment using Kubeflow Pipelines.
 * Model monitoring: drift detection, performance metrics, and retraining triggers.
 * RBAC and tenant-based isolation.
+* Audit & Compliance: Event logs stored in ELK stack; periodic AI fairness audits.
+* Drift Detection: Model monitoring for performance and data consistency.
 
 ## AI Use Cases & Models
 This section outlines the key AI-driven components and how they directly address MobilityCorp’s operational and customer challenges.
