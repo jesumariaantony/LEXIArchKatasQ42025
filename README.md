@@ -9,6 +9,7 @@ A structured approach to the Mobility Corp Problem **O'Reilly Architectural Kata
 - AI-Enhanced Solution Overview
 - System Architecture View
 - AI Use Cases & Models
+- Agentic / GenAI Feature implementation (Value Add)
 - Architecture Decision Records (ADRs)
 - Validation, Governance & Monitoring
 - Implementation Roadmap & MVP
@@ -166,60 +167,61 @@ This section provides a detailed view of the MobilityCorp system, showing how AI
 This section outlines the key AI-driven components and how they directly address MobilityCorp’s operational and customer challenges.
 
 ### Use Case 1: Predictive Demand Forecasting
-* Objective: Predict vehicle demand by type and location to ensure availability.
-* Inputs: Historical bookings, time-of-day, day-of-week, weather, events, nearby transit disruptions.
-* Models: Time-series models (ARIMA, Prophet), Gradient Boosted Trees (LightGBM/CatBoost), Transformer-based models for longer horizons.
-* Outputs: Probabilistic forecasts per zone with feature importances and scenario-based predictions.
-* Diagram:
+* **Objective**: Predict vehicle demand by type and location to ensure availability.
+* **Inputs**: Historical bookings, time-of-day, day-of-week, weather, events, nearby transit disruptions.
+* **Models**: Time-series models (ARIMA, Prophet), Gradient Boosted Trees (LightGBM/CatBoost), Transformer-based models for longer horizons.
+* **Outputs**: Probabilistic forecasts per zone with feature importances and scenario-based predictions.
+* **Diagram**:
   
   ![Predictive Demand Forecasting](/assets/predictive_demand_forecasting.png "Predictive Demand Forecasting")
 
 ### Use Case 2: Battery & Charge Prioritization
-* Objective: Predict which vehicles need charging or battery swaps and prioritize staff tasks.
-* Inputs: SOC, usage patterns, trip length estimates, charging availability, battery health, temperature.
-* Models: RUL regression or survival analysis, combined with priority scoring function.
-* Outputs: Prioritized task list for staff with urgency scores.
-* Diagram:
+* **Objective**: Predict which vehicles need charging or battery swaps and prioritize staff tasks.
+* **Inputs**: SOC, usage patterns, trip length estimates, charging availability, battery health, temperature.
+* **Models**: RUL regression or survival analysis, combined with priority scoring function.
+* **Outputs**: Prioritized task list for staff with urgency scores.
+* **Diagram**:
   
   ![Battery & Charge Prioritization](/assets/Battery_Charge_Prioritization.png "Battery & Charge Prioritization")
   
 ### Use Case 3: Staff Routing & Vehicle Redistribution
-* Objective: Optimize routes for staff performing battery swaps and vehicle redistribution.
-* Inputs: Forecasts, vehicle states, staff availability, traffic data, bay capacity.
-* Models: VRPTW (Vehicle Routing Problem with Time Windows) solver using OR-Tools, hybrid heuristics, and reinforcement learning for long-term optimization.
-* Outputs: Optimized staff routes and task assignments.
-* Diagram:
+* **Objective**: Optimize routes for staff performing battery swaps and vehicle redistribution.
+* **Inputs**: Forecasts, vehicle states, staff availability, traffic data, bay capacity.
+* **Models**: VRPTW (Vehicle Routing Problem with Time Windows) solver using OR-Tools, hybrid heuristics, and reinforcement learning for long-term optimization.
+* **Outputs**: Optimized staff routes and task assignments.
+* **Diagram**:
   
   ![Staff Routing & Vehicle Redistribution](/assets/Staff_Routing_Vehicle_Redistribution.png "Staff Routing & Vehicle Redistribution")
   
 ### Use Case 4: Return Verification & Compliance
-* Objective: Verify that vehicles are returned correctly and EVs are charged.
-* Inputs: Customer photos, GPS data, bay locations.
-* Models: Computer vision models (YOLO/Detectron for object detection, Mask R-CNN for damage detection, classification for charger connection).
-* Outputs: Verification result with confidence score, detected issues, and human review queue.
-* Diagram:
+* **Objective**: Verify that vehicles are returned correctly and EVs are charged.
+* **Inputs**: Customer photos, GPS data, bay locations.
+* **Models**: Computer vision models (YOLO/Detectron for object detection, Mask R-CNN for damage detection, classification for charger connection).
+* **Outputs**: Verification result with confidence score, detected issues, and human review queue.
+* **Diagram**:
   
   ![Return Verification & Compliance](/assets/Return_Verification_Compliance.png "Return Verification & Compliance")
   
 ### Use Case 5: Personalized User Engagement
-* Objective: Encourage regular usage and subscription adoption.
-* Inputs: User trip history, saved locations, session context, travel patterns.
-* Models: Session-based recommendation models (SASRec/Transformer), uplift models for personalized incentives.
-* Outputs: Personalized suggestions, push notifications, targeted promotions.
-* Diagram:
+* **Objective**: Encourage regular usage and subscription adoption.
+* **Inputs**: User trip history, saved locations, session context, travel patterns.
+* **Models**: Session-based recommendation models (SASRec/Transformer), uplift models for personalized incentives.
+* **Outputs**: Personalized suggestions, push notifications, targeted promotions.
+* **Diagram**:
   
   ![Personalized User Engagement](/assets/Personalized_User_Engagement.png "Personalized User Engagement")
   
 ### Use Case 6: Fraud Detection & Security
-* Objective: Detect suspicious activities such as GPS spoofing, false photos, or account misuse.
-* Inputs: Unlock logs, GPS consistency, photo forensics, device fingerprints.
-* Models: Rule-based checks + anomaly detection (Isolation Forest, LSTM autoencoder), supervised classifiers for known fraud patterns.
-* Outputs: Risk scores, automated mitigation actions, human review when needed.
-* Diagram:
+* **Objective**: Detect suspicious activities such as GPS spoofing, false photos, or account misuse.
+* **Inputs**: Unlock logs, GPS consistency, photo forensics, device fingerprints.
+* **Models**: Rule-based checks + anomaly detection (Isolation Forest, LSTM autoencoder), supervised classifiers for known fraud patterns.
+* **Outputs**: Risk scores, automated mitigation actions, human review when needed.
+* **Diagram**:
   
   ![Fraud Detection & Security](/assets/Fraud_Detection_Security.png "Fraud Detection & Security")
-  
-## Architecture Decision Records (ADRs)
+
+# Agentic / GenAI Feature implementation
+# Architecture Decision Records (ADRs)
 
 These detailed ADRs establish a foundation for MobilityCorp’s AI architecture, ensuring scalability, resilience, and responsible deployment of AI across forecasting, optimization, and customer engagement systems.
 
@@ -236,11 +238,11 @@ These detailed ADRs establish a foundation for MobilityCorp’s AI architecture,
 9. [**ADR-009: Security & Access Control**](ADRs/ADR-009_Security_Access_Control.md)
 10. [**ADR-010: Recommendation Engine Framework**](ADRs/ADR-010_Recommendation_Engine_Framework.md)
 
-## Roadmap
+# Roadmap
 Approach: Phased Rollout Strategy
 This roadmap outlines the phased implementation plan to deploy MobilityCorp's AI-driven system, from initial MVP to full-scale production across multiple locations.
 
-### 1. Phase 1
+## 1. Phase 1
 
 Objective: Build a functional core system with AI support for key operations.
 ### Components:
@@ -256,7 +258,7 @@ Objective: Build a functional core system with AI support for key operations.
 * Accuracy of return verification.
 * Initial customer engagement and feedback.
 
-### 2. Phase 2
+## 2. Phase 2
 Objective: Expand AI capabilities and improve operational efficiency.
 ### Components:
 * Full feature store integration (online and offline features).
@@ -271,7 +273,7 @@ Objective: Expand AI capabilities and improve operational efficiency.
 * Increase in repeat customer usage and subscriptions.
 * Reduction in false fines and disputes.
 
-### 3. Phase 3
+## 3. Phase 3
 Objective: Scale to multiple cities and enhance system robustness.
 ### Components:
 * Multi-city deployment of AI models and infrastructure.
@@ -285,10 +287,10 @@ Objective: Scale to multiple cities and enhance system robustness.
 * Customer retention and growth metrics.
 * Accuracy and reliability of AI predictions across locations.
 
-### Risk Management
-* Fallbacks: Rule-based systems if AI models fail.
-* Human-in-the-loop: Critical tasks reviewed manually when needed.
-* Monitoring: Continuous system health and model performance checks.
-* Feedback loops: Customer and staff feedback incorporated into model retraining.
+# Risk Management
+* **Fallbacks**: Rule-based systems if AI models fail.
+* **Human-in-the-loop**: Critical tasks reviewed manually when needed.
+* **Monitoring**: Continuous system health and model performance checks.
+* **Feedback loops**: Customer and staff feedback incorporated into model retraining.
 
 This phased roadmap ensures a controlled, scalable, and efficient rollout of MobilityCorp’s AI-driven solution, starting with a focused MVP and progressively expanding to full production capabilities.
