@@ -179,79 +179,24 @@ This section outlines the key AI-driven components and how they directly address
 
 ## Architecture Decision Records (ADRs)
 
-### 1. ADR-001: Feature Store Adoption
-* **Decision**: Adopt Feast as the centralized feature store.
-* **Rationale**: Provides a consistent source for online and offline features, reducing training-serving skew for ML models.
-* **Trade-offs**: Adds operational overhead, but ensures reproducibility and real-time access to features for forecasting, battery prediction, and recommendation models.
+These detailed ADRs establish a foundation for MobilityCorp’s AI architecture, ensuring scalability, resilience, and responsible deployment of AI across forecasting, optimization, and customer engagement systems.
 
-### 2. ADR-002: Model Serving Architecture
-* **Decision**: Use Seldon Core on Kubernetes for serving models with canary and A/B deployment support.
-* **Rationale**: Vendor-neutral, supports multiple model frameworks, and integrates with service mesh for security and observability.
-* **Trade-offs**: Higher infra management effort compared to fully managed cloud services, but provides flexibility and portability.
-
-### 3. ADR-003: Vision Model Deployment (Edge vs Cloud)
-* **Decision**: Implement a two-tier approach: lightweight edge model for immediate feedback and cloud models for high-accuracy verification.
-* **Rationale**: Immediate UX feedback while leveraging cloud GPUs for complex inference.
-* **Trade-offs**: Requires version synchronization and model monitoring across layers.
-
-### 4. ADR-004: Optimization Solver Choice
-* **Decision**: Use OR-Tools CP-SAT combined with heuristic/metaheuristic algorithms for routing and redistribution.
-* **Rationale**: CP-SAT handles strict constraints efficiently; heuristics provide scalability for real-time updates.
-* **Trade-offs**: Near-optimal solutions may occasionally be suboptimal, but real-time constraints are met.
-
-### 5. ADR-005: Data Retention & Privacy
-* **Decision**: Retain raw images for 30 days, telemetry for 12 months hot storage, then archive. Provide tenant-specific retention policies.
-* **Rationale**: Balances dispute resolution, operational analysis, and privacy requirements.
-* **Trade-offs**: Shorter retention may limit dispute resolution; longer retention increases storage costs.
-
-### 6. ADR-006: AI Validation & Human-in-the-Loop
-* **Decision**: All high-impact decisions (billing fines, return verification, fraud alerts) include human review for low-confidence cases.
-* **Rationale**: Ensures fairness, reduces false positives, and builds trust in AI decisions.
-* **Trade-offs**: Slightly slower response for edge cases but improves accuracy and customer satisfaction.
-
-### 7. ADR-007: Model Retraining & Drift Detection
-* **Decision**: Implement continuous monitoring for input distribution and model performance. Trigger retraining or rollback when drift is detected.
-* **Rationale**: Maintains accuracy over time and ensures AI models adapt to changing user behavior and seasonal trends.
-* **Trade-offs**: Additional monitoring and compute costs, but reduces risk of degraded performance impacting operations and customer experience.
-
-## Validation, Governance & Monitoring
-To ensure AI-driven operations are accurate, fair, and reliable, MobilityCorp implements validation processes, governance standards, and continuous monitoring across all models and operational systems.
-Model Validation & Performance Monitoring
-
-### 1. Forecasting Models: Evaluate using CRPS, MAE, and coverage of prediction intervals.
-* RUL/Battery Models: Use RMSE, calibration metrics, and time-to-failure precision/recall.
-* Vision Models: Measure precision/recall for return verification, FPR for false fines, and human review rates.
-* Recommender Models: Monitor uplift, retention lift, conversion rates, and long-term behavior changes.
-Processes:
-* Shadow deployments of new models to gather performance data without affecting live decisions.
-* Canary rollouts to a small user group before full deployment.
-* Human-in-the-loop for low-confidence or high-impact cases.
-
-### 2. Governance & Responsible AI
-* Fairness: Regular audits to ensure recommendations and incentives do not introduce bias.
-* Privacy: Explicit user consent for targeted notifications and calendar integrations. Data encryption at rest and in transit.
-* Transparency: Explainability using SHAP values for predictions and visual overlays for vision-based verifications.
-* Data Quality: Automated checks on incoming telemetry and images to ensure consistency and completeness.
-
-### 3. Operational Monitoring
-* Telemetry & Logging: All model inferences and API calls are logged for traceability.
-* Alerting: Prometheus/Grafana alerting on anomalies, system failures, or model performance degradation.
-* Drift Detection: Monitor input distributions and outputs to detect concept drift and trigger retraining.
-* Dashboard & Analytics: Centralized dashboards for staff and management to view fleet status, AI recommendations, and alerts.
-
-### 4. Risk Mitigation
-* Fallback Mechanisms: Rule-based defaults if AI services fail.
-* Human Oversight: Critical decisions (billing, return verification, fraud detection) reviewed by staff.
-* Continuous Improvement: Feedback loops from staff and customer interactions feed back into training data.
-* Security: Monitoring for unusual access patterns, GPS spoofing, and potential fraud attempts.
-
-This framework ensures AI systems remain accurate, trustworthy, and aligned with business objectives while providing a safe and fair experience for customers and staff.
+1. [**ADR-001: Feature Store Adoption**](ADRs/ADR-001_Feature_Store_Adoption.md)
+2. [**ADR-002: Model Serving Architecture**](ADRs/ADR-002_Model_Serving_Architecture.md)
+3. [**ADR-003: Vision Model Deployment (Edge vs Cloud)**](ADRs/ADR-003_Vision_Model_Deployment.md)
+4. [**ADR-004: Optimization Solver Choice**](ADRs/ADR-004_Optimization_Solver_Choice.md)
+5. [**ADR-005: Data Retention & Privacy**](ADRs/ADR-005_Data_Retention_Privacy.md)
+6. [**ADR-006: AI Validation & Human-in-the-Loop**](ADRs/ADR-006_AI_Validation_Human-in-the-Loop.md)
+7. [**ADR-007: Model Retraining & Drift Detection**](ADRs/ADR-007_Model_Retraining_Drift_Detection.md)
+8. [**ADR-008: Observability & Monitoring Stack**](ADRs/ADR-008_Observability_Monitoring_Stack.md)
+9. [**ADR-009: Security & Access Control**](ADRs/ADR-009_Security_Access_Control.md)
+10. [**ADR-010: Recommendation Engine Framework**](ADRs/ADR-010_Recommendation_Engine_Framework.md)
 
 ## Roadmap
 Approach: Phased Rollout Strategy
 This roadmap outlines the phased implementation plan to deploy MobilityCorp's AI-driven system, from initial MVP to full-scale production across multiple locations.
 
-### 1. MVP Scope
+### 1. Phase 1
 
 Objective: Build a functional core system with AI support for key operations.
 ### Components:
