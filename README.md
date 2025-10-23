@@ -20,9 +20,6 @@ Implementation Roadmap & MVP
 - [**Bhuvaneswari**](https://www.linkedin.com/in/bhuvaneshwari-s-26b2a71a2/) , Senior AI Engineer
 - [**Sariga**](https://www.linkedin.com/in/sariga-k-473b63227/) , Senior AI Engineer
 
-## Glossary
-[Glossary](business-requirements/glossary.md) to understand more about certain terms.
-
 # Problem definition
 
 ## Problem Statement
@@ -34,6 +31,7 @@ MobilityCorp needs an AI-driven architecture that dynamically aligns fleet avail
 **Customer Experience**:
 1. Customers often find the vehicles they need aren’t available where or when they want them.
 2. Inconsistent availability discourages regular use.
+3. Low Battery (SoC) vehicles and sometimes dead battery
 
 **Operations**:
 1. It’s hard to predict when and where vehicles will be needed.
@@ -41,14 +39,10 @@ MobilityCorp needs an AI-driven architecture that dynamically aligns fleet avail
    
 **Usage & Retention**:
 1. Most customers use the service sporadically rather than for regular commutes.
+2. Low Customer repeat / Weak conversion
    
 **Energy Management**:
 1. Vehicles sometimes run low on charge before staff can reach them.
-
-
-1. Vehicles aren’t where customers want them (availability / placement)
-2. Dead / low-battery vehicles
-3. Low repeat usage / weak conversion -
 
 ## Current Operations
 
@@ -67,7 +61,9 @@ By using smart data insights and predictive tools, MobilityCorp can:
 * Encourage regular usage by understanding travel habits and offering helpful suggestions.
 
 # AI Enhanced Solution Overview
+
 To address MobilityCorp's challenges, we propose an AI-driven approach that makes fleet management smarter, more predictive, and customer-friendly. The goal is to ensure vehicles are where customers need them, reduce operational inefficiencies, and encourage regular usage.
+
 ## Key AI Capabilities
 ### a) Predictive Demand Forecasting:
 * Anticipates where and when different vehicles will be needed.
@@ -180,6 +176,8 @@ This section outlines the key AI-driven components and how they directly address
 ## Architecture Decision Records (ADRs)
 
 These detailed ADRs establish a foundation for MobilityCorp’s AI architecture, ensuring scalability, resilience, and responsible deployment of AI across forecasting, optimization, and customer engagement systems.
+
+[Click on each of the links to read in detail]
 
 1. [**ADR-001: Feature Store Adoption**](ADRs/ADR-001_Feature_Store_Adoption.md)
 2. [**ADR-002: Model Serving Architecture**](ADRs/ADR-002_Model_Serving_Architecture.md)
