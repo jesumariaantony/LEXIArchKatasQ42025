@@ -14,7 +14,7 @@ A structured approach to the Mobility Corp Problem **O'Reilly Architectural Kata
 
 Implementation Roadmap & MVP
 ## Team
- ![Team](/assets/team.png "team")
+ ![Team](/assets/lexi.png "team")
 - [**Jesu Maria Antony sebastian**](https://www.linkedin.com/in/jesumariaantony/) , Senior Solution Architect
 - [**Karthick G**](https://www.linkedin.com/in/karthick-gurumoorthy-11775a199/) , Senior AI Engineer
 - [**Bhuvaneswari**](https://www.linkedin.com/in/bhuvaneshwari-s-26b2a71a2/) , Senior AI Engineer
