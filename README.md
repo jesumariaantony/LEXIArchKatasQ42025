@@ -151,7 +151,10 @@ This section outlines the key AI-driven components and how they directly address
 * Inputs: SOC, usage patterns, trip length estimates, charging availability, battery health, temperature.
 * Models: RUL regression or survival analysis, combined with priority scoring function.
 * Outputs: Prioritized task list for staff with urgency scores.
-
+* Diagram:
+  
+  ![Battery & Charge Prioritization](/assets/Battery_Charge_Prioritization "Battery & Charge Prioritization")
+  
 ### Use Case 3: Staff Routing & Vehicle Redistribution
 * Objective: Optimize routes for staff performing battery swaps and vehicle redistribution.
 * Inputs: Forecasts, vehicle states, staff availability, traffic data, bay capacity.
