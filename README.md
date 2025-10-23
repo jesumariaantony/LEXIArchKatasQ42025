@@ -153,7 +153,7 @@ This section outlines the key AI-driven components and how they directly address
 * Outputs: Prioritized task list for staff with urgency scores.
 * Diagram:
   
-  ![Battery & Charge Prioritization](/assets/Battery_Charge_Prioritization "Battery & Charge Prioritization")
+  ![Battery & Charge Prioritization](/assets/Battery_Charge_Prioritization.png "Battery & Charge Prioritization")
   
 ### Use Case 3: Staff Routing & Vehicle Redistribution
 * Objective: Optimize routes for staff performing battery swaps and vehicle redistribution.
