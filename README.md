@@ -7,12 +7,12 @@ A structured approach to the Mobility Corp Problem **O'Reilly Architectural Kata
 
 - Overview & Problem Statement
 - AI-Enhanced Solution Overview
-- System Architecture Diagram & Components
+- System Architecture View
 - AI Use Cases & Models
 - Architecture Decision Records (ADRs)
 - Validation, Governance & Monitoring
-
-Implementation Roadmap & MVP
+- Implementation Roadmap & MVP
+  
 ## Team
  ![Team](/assets/lexi.png "team")
 - [**Jesu Maria Antony sebastian**](https://www.linkedin.com/in/jesumariaantony/) , Senior Solution Architect
@@ -20,7 +20,7 @@ Implementation Roadmap & MVP
 - [**Bhuvaneswari**](https://www.linkedin.com/in/bhuvaneshwari-s-26b2a71a2/) , Senior AI Engineer
 - [**Sariga**](https://www.linkedin.com/in/sariga-k-473b63227/) , Senior AI Engineer
 
-# Problem definition
+# Overview & Problem Statement
 
 ## Problem Statement
 
@@ -102,7 +102,7 @@ The AI-enabled solution integrates with MobilityCorp’s existing systems and in
 * Improved customer satisfaction and higher regular usage.
 * Secure, reliable, and scalable system ready for expansion to multiple locations.
   
-# System Architecture Components
+# System Architecture View
 This section provides a detailed view of the MobilityCorp system, showing how AI integrates with existing operations to improve vehicle availability, optimize maintenance, and enhance customer experience.
 
 ### a) Edge Layer:
