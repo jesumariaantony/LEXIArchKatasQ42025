@@ -86,11 +86,16 @@ Uses real-time data on vehicle locations, battery levels, and predicted demand.
 
 ## Architecture Overview
 The AI-enabled solution integrates with MobilityCorp’s existing systems and includes:
+
+![Architecture Overview](/assets/Architecture_Overview.png "Architecture Overview")
+
 * **Edge Layer** : Vehicle sensors and app inputs (GPS, telemetry, NFC actions, photos).
 * **Streaming and Storage**: Real-time data pipelines for telemetry, event logs, and images; hot storage for live queries and cold storage for historical data.
 * **Machine Learning Platform**: Models for forecasting, RUL/battery predictions, routing optimization, vision-based verification, and recommendation systems.
 * **Operations & Staff Tools**: Mobile apps for maintenance staff with optimized tasks, fleet dashboards for monitoring, and alerts.
 * **Customer Apps**: Updated mobile apps offering personalized suggestions, instant verification of returns, and notifications.
+
+
 
 ## Expected Outcomes
 * Vehicles are available where and when needed.
