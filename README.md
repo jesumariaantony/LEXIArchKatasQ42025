@@ -1,5 +1,6 @@
 
-# LEXI Team - Tata Elxsi Team | O'Reilly Architectural Katas Q4 2025: AI-Enabled Architecture
+# O'Reilly Architectural Katas Q4 2025: AI-Enabled Architecture
+**Team LEXI** - from **Tata Elxsi** - Home to Billion Possibilities
 
 A structured approach to the Mobility Corp Problem **O'Reilly Architectural Katas Q4 2025: AI-Enabled Architecture**.
 
@@ -9,10 +10,11 @@ A structured approach to the Mobility Corp Problem **O'Reilly Architectural Kata
 - AI-Enhanced Solution Overview
 - System Architecture View
 - AI Use Cases & Models
-- Agentic / GenAI Feature implementation (Value Add)
+- Agentic AI Implementation with Multi-Agent System
 - Architecture Decision Records (ADRs)
 - Validation, Governance & Monitoring
-- Implementation Roadmap & MVP
+- Implementation Roadmap
+- Risk Management
   
 ## Team
  ![Team](/assets/lexi.png "team")
@@ -220,7 +222,40 @@ This section outlines the key AI-driven components and how they directly address
   
   ![Fraud Detection & Security](/assets/Fraud_Detection_Security.png "Fraud Detection & Security")
 
-# Agentic / GenAI Feature implementation
+# Agentic AI Implementation with Multi-Agent System
+
+Integrating a multi-agent, agentic AI approach enhances MobilityCorp’s ability to manage complex operations dynamically, supports real-time adaptive decision-making, and allows the system to scale as new agents are introduced for additional services or geographic locations. MobilityCorp has complex, dynamic operational requirements involving real-time decision making for multiple vehicle types, staff routing, and customer interactions.
+
+Implement an agent-based AI architecture where multiple specialized agents operate collaboratively to manage fleet operations, demand forecasting, battery swaps, and customer engagement.
+*Each agent is responsible for a specific domain (e.g., Demand Agent, Battery Agent, Routing Agent, Recommender Agent, Fraud Detection Agent).
+*Agents communicate via a message bus (Kafka) and share state through a centralized feature store.
+*Decentralized decision-making allows for faster response, robustness, and modular scalability.
+
+**Implementation Details**:
+
+Agent Types:
+
+* **Demand Agent**: Predicts short-term and long-term vehicle demand by location.
+* **Battery Agent**: Monitors charge levels, predicts battery depletion, and schedules swaps.
+* **Routing Agent**: Computes optimal paths for staff and vehicle redistribution.
+* **Recommender Agent**: Suggests personalized trips and promotions to customers.
+* **Vision Agent**: Verifies vehicle returns and detects damages.
+* **Fraud Agent**: Monitors anomalies in GPS, unlocks, and payments.
+
+  ![Agentic / GenAI Feature](/assets/agentic_ai_view.png "Agentic / GenAI Feature")
+  
+**Communication**: Agents communicate asynchronously using event streams and publish-subscribe patterns.
+
+**Coordination**: A central orchestrator monitors agent performance, resolves conflicts, and triggers retraining or fallback mechanisms.
+
+**Learning**: Agents can adapt policies via reinforcement learning and continuously improve via feedback from operations and customer interactions.
+
+**Trade-offs**:
+
+* Increased system complexity and need for careful orchestration.
+* Requires robust monitoring to detect agent conflicts or miscoordination.
+* Higher initial development cost, offset by improved scalability, modularity, and responsiveness.
+
 # Architecture Decision Records (ADRs)
 
 These detailed ADRs establish a foundation for MobilityCorp’s AI architecture, ensuring scalability, resilience, and responsible deployment of AI across forecasting, optimization, and customer engagement systems.
@@ -238,8 +273,8 @@ These detailed ADRs establish a foundation for MobilityCorp’s AI architecture,
 9. [**ADR-009: Security & Access Control**](ADRs/ADR-009_Security_Access_Control.md)
 10. [**ADR-010: Recommendation Engine Framework**](ADRs/ADR-010_Recommendation_Engine_Framework.md)
 
-# Roadmap
-Approach: Phased Rollout Strategy
+# Implementation Roadmap
+**Approach**: Phased Rollout Strategy
 This roadmap outlines the phased implementation plan to deploy MobilityCorp's AI-driven system, from initial MVP to full-scale production across multiple locations.
 
 ## 1. Phase 1
