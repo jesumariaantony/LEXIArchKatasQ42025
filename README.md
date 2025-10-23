@@ -14,7 +14,6 @@ A structured approach to the Mobility Corp Problem **O'Reilly Architectural Kata
 - Architecture Decision Records (ADRs)
 - Validation, Governance & Monitoring
 - Implementation Roadmap
-- Risk Management
   
 ## Team
  ![Team](/assets/lexi.png "team")
