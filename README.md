@@ -142,6 +142,9 @@ This section outlines the key AI-driven components and how they directly address
 * Inputs: Historical bookings, time-of-day, day-of-week, weather, events, nearby transit disruptions.
 * Models: Time-series models (ARIMA, Prophet), Gradient Boosted Trees (LightGBM/CatBoost), Transformer-based models for longer horizons.
 * Outputs: Probabilistic forecasts per zone with feature importances and scenario-based predictions.
+* Diagram:
+  
+  ![Predictive Demand Forecasting](/assets/image.png "Predictive Demand Forecasting")
 
 ### Use Case 2: Battery & Charge Prioritization
 * Objective: Predict which vehicles need charging or battery swaps and prioritize staff tasks.
