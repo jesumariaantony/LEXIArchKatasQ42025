@@ -272,6 +272,48 @@ These detailed ADRs establish a foundation for MobilityCorp’s AI architecture,
 9. [**ADR-009: Security & Access Control**](ADRs/ADR-009_Security_Access_Control.md)
 10. [**ADR-010: Recommendation Engine Framework**](ADRs/ADR-010_Recommendation_Engine_Framework.md)
 
+# AI Cost Governance Framework
+
+To ensure MobilityCorp’s AI ecosystem remains efficient, predictable, and value-focused, a dedicated AI Cost Governance Framework is embedded across the entire lifecycle — from data ingestion to model deployment. This framework aligns technical excellence with financial accountability through five core principles:
+
+**1. FinOps-Driven Design**
+
+AI workloads are architected using a FinOps-first mindset, where cost visibility and efficiency are built into every stage.
+Each AI service is tagged with cost centers, allowing precise tracking of expenses per model, per environment, and per team.
+Forecasting dashboards visualize compute, storage, and inference costs in real time, helping teams balance accuracy against affordability.
+
+**2. Tiered Workload Strategy**
+
+AI processes are classified as real-time, near-real-time, or batch, and allocated infrastructure accordingly.
+- Real-time inferences (e.g., battery health alerts, fraud detection) run on lightweight, autoscaling APIs with CPU/GPU quotas.
+- Batch training and simulations are executed on spot or preemptible instances, scheduled during low-demand windows.
+- Exploratory research and large experiments are sandboxed and governed by strict cost ceilings.
+This structured approach prevents overprovisioning and ensures every compute cycle adds business value.
+
+**3. Data Lifecycle Optimization**
+
+Data storage follows a “hot–warm–cold” model.
+- Recent and frequently queried data stays in fast-access, high-performance storage (e.g., time-series or cache layers).
+- Mid-term data moves to optimized data lakes for model retraining.
+- Older telemetry and logs are archived automatically to low-cost object storage.
+- This not only reduces storage costs but also shortens data processing pipelines and improves query efficiency.
+
+**4. Model Efficiency and Reuse**
+
+Model optimization is continuous.
+- Techniques like quantization, pruning, distillation, and transfer learning are applied to shrink model size and lower inference latency.
+- A central model registry tracks reuse across cities, vehicle types, and scenarios, avoiding duplicate development.
+- Idle or underperforming models are retired promptly, ensuring compute and storage resources are only allocated to active, value-creating AI assets.
+
+**5. Continuous Monitoring and Cost–Value Feedback Loop**
+
+Each AI service is linked to measurable KPIs — such as cost per inference, model ROI, utilization rate, and cost avoidance achieved through automation.
+FinOps and data engineering teams review these insights periodically, fine-tuning budgets and model strategies.
+By coupling performance metrics with financial indicators, MobilityCorp ensures AI remains both impactful and economically sustainable.
+
+This governance model transforms AI spending from a black box into a transparent, measurable investment portfolio.
+It creates a culture where data scientists, engineers, and business teams share accountability for both innovation and efficiency — ensuring every AI insight delivers not just intelligence, but also tangible return on spend.
+
 # Validation, Governance & Monitoring
 To ensure AI-driven operations are accurate, fair, and reliable, MobilityCorp implements validation processes, governance standards, and continuous monitoring across all models and operational systems.
 
