@@ -2,6 +2,8 @@
 # O'Reilly Architectural Katas Q4 2025: AI-Enabled Architecture
 **Team LEXI** - from **Tata Elxsi** - Home to Billion Possibilities
 
+![Team](/assets/lexi.png "team")
+
 A structured approach to the Mobility Corp Problem **O'Reilly Architectural Katas Q4 2025: AI-Enabled Architecture**.
 
 ## Table of Contents
@@ -16,8 +18,7 @@ A structured approach to the Mobility Corp Problem **O'Reilly Architectural Kata
 - Implementation Roadmap
   
 ## Team
- ![Team](/assets/lexi.png "team")
- ![Team](/assets/"lexiOriellyTeam.png" "team")
+  ![Team](/assets/lexiOriellyTeam.png "team")
   
 - [**Jesu Maria Antony sebastian**](https://www.linkedin.com/in/jesumariaantony/) , Senior Solution Architect
 - [**Karthick G**](https://www.linkedin.com/in/karthick-gurumoorthy-11775a199/) , Senior AI Engineer
